@@ -1,0 +1,239 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+  background: #000;
+  color: #f5f5f7;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app {
+  display: flex;
+  min-height: 100vh;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+.navigation {
+  width: 280px;
+  min-width: 280px;
+  background: linear-gradient(180deg, #0d0d0d 0%, #000 100%);
+  padding: 2.5rem 1.5rem;
+  border-right: 1px solid #1c1c1e;
+  box-shadow: 2px 0 20px rgba(0,0,0,0.6);
+  flex-shrink: 0; /* Verhindert Shrinken */
+}
+
+.nav-button {
+  display: block;
+  width: 100%;
+  padding: 1.25rem 1.75rem;
+  margin-bottom: 0.75rem;
+  background: rgba(30, 30, 30, 0.8);
+  color: #f5f5f7;
+  border: 1px solid rgba(84, 84, 84, 0.4);
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  text-align: left;
+  backdrop-filter: blur(20px);
+}
+
+.nav-button:hover {
+  background: rgba(0, 122, 255, 0.2);
+  border-color: rgba(0, 122, 255, 0.5);
+  transform: translateX(4px);
+}
+
+.nav-button.active {
+  background: rgba(0, 122, 255, 0.3);
+  border-color: #007aff;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 122, 255, 0.2);
+}
+
+.main {
+  flex: 1;
+  padding: 3rem 2rem;
+  min-width: 0; /* Ermöglicht Shrinken */
+  overflow-y: auto;
+}
+
+section {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h2 {
+  margin-bottom: 2rem;
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+#expense-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 100%;
+  background: rgba(30, 30, 30, 0.7);
+  padding: 2rem;
+  border-radius: 20px;
+  border: 1px solid rgba(84, 84, 84, 0.3);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+#expense-form input,
+#expense-form select {
+  padding: 1rem 1.25rem;
+  border: 2px solid rgba(84, 84, 84, 0.4);
+  border-radius: 12px;
+  background: rgba(44, 44, 44, 0.9);
+  color: #f5f5f7;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+#expense-form input::placeholder {
+  color: rgba(200, 200, 205, 0.5);
+}
+
+#expense-form input:focus,
+#expense-form select:focus {
+  outline: none;
+  border-color: #007aff;
+  box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.1);
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: #ebebf0;
+  font-size: 0.95rem;
+}
+
+#expense-form button[type="submit"] {
+  padding: 1.25rem 2rem;
+  background: linear-gradient(135deg, #007aff 0%, #0056b3 100%);
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  margin-top: 0.5rem;
+}
+
+#expense-form button[type="submit"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 122, 255, 0.4);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  padding: 1.25rem;
+  background: rgba(44, 44, 44, 0.7);
+  margin-bottom: 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(84, 84, 84, 0.3);
+  border-left: 4px solid #007aff;
+  backdrop-filter: blur(10px);
+}
+
+/* Tablet & Mobile */
+@media (max-width: 1024px) {
+  .navigation {
+    width: 240px;
+    min-width: 240px;
+    padding: 2rem 1rem;
+  }
+  
+  .main {
+    padding: 2rem 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .app {
+    flex-direction: column;
+    overflow: hidden;
+  }
+  
+  .navigation {
+    width: 100%;
+    min-width: auto;
+    flex-shrink: 1;
+    display: flex;
+    padding: 1rem;
+    gap: 0.75rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+    order: 2;
+  }
+  
+  .nav-button {
+    flex: 1;
+    min-width: 0;
+    margin-bottom: 0;
+    padding: 1rem;
+    font-size: 1rem;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .main {
+    padding: 1.5rem 1rem;
+    order: 1;
+    min-height: 60vh;
+  }
+  
+  h2 {
+    font-size: 1.75rem;
+  }
+  
+  #expense-form {
+    padding: 1.5rem;
+    margin: 0 -1rem;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+  
+  #expense-form input,
+  #expense-form select {
+    padding: 0.875rem 1rem;
+    font-size: 16px; /* iOS Zoom-Fix */
+  }
+}
+
+@media (max-width: 480px) {
+  .main {
+    padding: 1rem 0.75rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+}

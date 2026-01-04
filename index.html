@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+    <nav class="navigation">
+      <button class="nav-button" id="nav-new" >New</button>
+      <button class="nav-button" id="nav-expense">Expense</button>
+        <button class="nav-button" id="nav-statistics">Statistics</button>
+    </nav>
+    <main class="main">
+      <section id="new" >
+        <h2>Add New Expense</h2>
+        <form id="expense-form">
+          <input type="number" id="amount" placeholder="Amount" required>
+          <input type="text" id="description" placeholder="Description" >
+          <input type="date" id="date" required>
+          <label for="category">Kategorie:</label>
+            <select id="category" name="category">
+            <option value="">-- Wähle --</option>
+            <option value="food">Essen</option>
+            <option value="transport">Transport</option>
+            <option value="rent">Miete</option>
+            <option value="gym">Fitnessstudio</option>
+            </select>
+          <button type="submit">Add Expense</button>
+        </form>
+      </section>
+        <section id="expense" >
+            <h2>All Expenses</h2>
+            <ul id="expense-list">
+                <li>No expenses added yet.</li>
+            </ul>
+        </section>
+        <section id="statistics" >
+            <h2>Statistics</h2>
+            <ul id="statistics-list">
+                <li>No statistics available.</li>
+            </ul>
+        </section>
+    </main>
+</div>
+    <script src="script.js"></script>
+</body>
+</html>
+
