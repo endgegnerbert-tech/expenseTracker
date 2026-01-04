@@ -1,0 +1,20 @@
+{
+    "editor.autoClosingBrackets": "always",
+    "editor.autoClosingComments": "languageDefined"
+
+    ,
+  // Nur KI deaktivieren – IntelliSense bleibt!
+  "github.copilot.enable": { "*": false },
+  "codeium.enable": false,  // Für Codeium/Windsurf
+  "windsurf.enable": false,
+  // Inline-KI-Ghost-Text aus (grauer Text)
+  "editor.inlineSuggest.enabled": false,
+  // Basis-IntelliSense behalten (ohne Trigger-Chars)
+  "editor.quickSuggestions": {
+    "other": true,      // Methoden/Variablen OK
+    "comments": true,
+    "strings": true
+  },
+  "editor.suggest.showSnippets": true,  // Snippets erlauben
+  "editor.parameterHints.enabled": true  // Parameter-Infos
+}
