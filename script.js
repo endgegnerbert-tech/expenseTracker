@@ -44,11 +44,7 @@ navStatistics.addEventListener('click',()=>{
 // End of navigation between sections
 //Adding new expense
 const addExpenseBtn = document.getElementById('submit-expense');
-const amount = document.getElementById('amount');
-const description = document.getElementById('description');
-const date = document.getElementById('date');
-const category = document.getElementById('category');
-
+const expenseForm = document.getElementById('expense-form')
 let expenses = [];
  expenses = JSON.parse(localStorage.getItem('expenses') || '[]');    
 
@@ -56,18 +52,17 @@ let expenses = [];
 addExpenseBtn.addEventListener('click', (e) => {  
   e.preventDefault();  
   
-  const newExpense = {
-    amount: amount.value.trim(),
-    description: description.value.trim(), 
-    date: date.value,
-    category: category.value
-  };
   
-  expenses.push(newExpense);   
+
+  
+  const newExpense = new FormData (expenseForm)
+  const newexpenseData =Object.fromEntries(newExpense.entries());
+  
+  expenses.push(newexpenseData);   
   
   localStorage.setItem('expenses', JSON.stringify(expenses));
   
-  amount.value = description.value = date.value = category.value = '';
+  expenseForm.reset()
   renderExpenses()
 });
 
@@ -75,7 +70,7 @@ const renderExpenseDiv = document.getElementById('renderlistoutput');
 renderExpenses()
 
 function renderExpenses() {
-  let html = '';  // ✅ Normale String!
+  let html = '';  
   
   expenses.forEach(exp => {
     html += `<li class="expense-item">${exp.description}: ${exp.amount}€ (${exp.category}, ${exp.date})</li>`;
@@ -84,7 +79,22 @@ function renderExpenses() {
   if (expenses.length === 0) {
     html = '<p class="no-entries">Noch keine Einträge</p>';
   }
-  
-  renderExpenseDiv.innerHTML = html;  // ✅ Fertiger HTML-String
+ 
+  renderExpenseDiv.innerHTML =html;
+  renderStatistics()
 }
+//statistics section
+const renderStatsSection = document.getElementById('render-stats-section')
+console.log(renderStatsSection)
 
+function renderStatistics() {
+  let amountStat = 0;  // Declare + init here!
+
+  for (let i = 0; i < expenses.length; i++) {
+    amountStat += Number(expenses[i].amount);
+  }
+
+  const statstring = `Tracked expenses: ${amountStat}`;
+  console.log(statstring);
+  statisticsSection.innerHTML = statstring;
+}
